@@ -18,7 +18,9 @@ let stars = [];
 for (let i = 0; i < 10; i++) {
   stars.push(createStar());
 }
+
 console.log(stars);
+
 // Player object
 let player = {
   x: cnv.width / 2 - 15, // start @ middle of width
@@ -30,7 +32,9 @@ let player = {
   onGround: true,
   gravity: 20,
 };
+
 console.log(player);
+
 // Event Handlers
 document.addEventListener("keydown", keydownHandler);
 document.addEventListener("keyup", keyupHandler);
@@ -69,7 +73,7 @@ function draw() {
   // draw the score
   ctx.fillStyle = "black";
   ctx.font = "24px Arial";
-  ctx.fillText(`Score: ${score}`, 10, 20);
+  ctx.fillText(`Score: 0`, 10, 20);
 
   // player script
   ctx.fillStyle = player.color;
@@ -87,17 +91,18 @@ function draw() {
 
     stars[i].y = stars[i].y + stars[i].ySpeed;
 
-    //check if star reaches bottom, then, move it to top
+    // Check if star reaches bottom, then move it to top
     if (stars[i].y >= 400) {
       stars[i].y = -40; // above canvas
-      stars[i].x = randomInt(0, 360); // random.x
-      stars[i].color = colors[randomInt(0, 6)]; // new colors
+      stars[i].x = randomInt(0, 360); // random x
+      stars[i].color = colors[randomInt(0, 6)]; // new color
     }
-    // check for collision with player
+
+    // Check for collision with player
     if (rectCollide(player, stars[i])) {
       stars[i].y = -40; // above canvas
-      stars[i].x = randomInt(0, 360); // random.x
-      stars[i].color = colors[randomInt(0, 6)]; // new colors
+      stars[i].x = randomInt(0, 360); // random x
+      stars[i].color = colors[randomInt(0, 6)]; // new color
     }
   }
 
